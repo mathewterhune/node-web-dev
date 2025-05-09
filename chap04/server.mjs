@@ -2,6 +2,8 @@ import * as http from "http";
 import * as util from "util";
 import * as os from "os";
 
+import { sniffOn } from './httpsniffer.mjs';
+
 // REQUEST ROUTING
 
 const listenOn = "http://localhost:8124";
@@ -20,6 +22,7 @@ server.on("request", (req, res) => {
 });
 
 server.listen(new URL(listenOn).port);
+sniffOn(server);                        // Sniffing the server for requests and events
 console.log(`Listening on ${listenOn}`);
 
 function homePage(req, res) {
